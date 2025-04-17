@@ -4,7 +4,6 @@ using namespace std;
 
 int main()
 {
-    // hello
     int option;
     int numbers[50];
     int count = 0;
