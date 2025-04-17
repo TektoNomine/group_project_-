@@ -15,7 +15,7 @@ int main()
             count++;  // count how many numbers were actually read
         }
         else {
-            break; // if the file has ended or an error occurred — exit the loop
+            break; 
         }
     }
     infile.close();
