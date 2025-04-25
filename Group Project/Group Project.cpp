@@ -8,10 +8,20 @@ int numbers[50];
 int dataCount = 0;
 
 void ShowMenu(void);
-void GetAverage(void);
-void GetSmallest(void);
+double GetAverage(void);
+int GetSmallest(void);
 void GetNumOccurences(int);
 void Quit(void);
+
+void scaleUp(void);
+void reverse(void);
+void zeroBase(void);
+void removeNumber(void);
+
+void display(void);
+int getTotal(void);
+int getLargest(void);
+void sortArr(void);
 
 int main()
 {
@@ -36,20 +46,11 @@ int main()
         switch (option)
         {
         case 1:
-            for (int i = 0; i < dataCount; i++)
-            {
-                cout << numbers[i] << " ";
-            }
-            cout << endl;
+            display();
             break;
         case 2:
         {
-            int total = 0;
-            for (int i = 0; i < dataCount; i++)
-            {
-                total += numbers[i];
-            }
-            cout << "Total: " << total << endl;
+            getTotal();
             break;
         }
         case 3:
@@ -57,16 +58,9 @@ int main()
             break;
         case 4:
         {
-            int largest = numbers[0];
-            for (int i = 1; i < dataCount; i++)
-            {
-                if (numbers[i] > largest)
-                {
-                    largest = numbers[i];
-                }
-            }
-            cout << "Largest: " << largest << endl;
+            getLargest();
             break;
+            
         }
         case 5:
             GetSmallest();
@@ -93,66 +87,28 @@ int main()
         }
         case 7:
         {
-            int sFactor;
-            cin >> sFactor;
-            for (int i = 0; i < dataCount; i++)
-            {
-                numbers[i] *= sFactor;
-            }
+            scaleUp();
             break;
+            
         }
         case 8:
         {
-            for (int i = 0; i < dataCount / 2; i++)
-            {
-                int temp = numbers[i];
-                numbers[i] = numbers[dataCount - 1 - i];
-                numbers[dataCount - 1 - i] = temp;
-            }
+            reverse();
             break;
         }
         case 9:
         {
-            int min = numbers[0];
-            for (int i = 1; i < dataCount; i++)
-            {
-                if (numbers[i] < min)
-                    min = numbers[i];
-            }
-            for (int i = 0; i < dataCount; i++)
-            {
-                numbers[i] -= min;
-            }
+            zeroBase();
             break;
         }
         case 10:
         {
-            int element;
-            cin >> element;
-            if (element >= 1 && element <= dataCount)
-            {
-                for (int i = element - 1; i < dataCount - 1; i++)
-                {
-                    numbers[i] = numbers[i + 1];
-                }
-                dataCount--;
-            }
+            removeNumber();
             break;
         }
         case 11:
         {
-            for (int i = 0; i < dataCount - 1; i++)
-            {
-                for (int j = 0; j < dataCount - 1 - i; j++)
-                {
-                    if (numbers[j] > numbers[j + 1])
-                    {
-                        int temp = numbers[j];
-                        numbers[j] = numbers[j + 1];
-                        numbers[j + 1] = temp;
-                    }
-                }
-            }
+            sortArr();
             break;
         }
         case 12:
@@ -165,7 +121,7 @@ int main()
 
     return 0;
 }
-
+// Functions by Dylan
 void ShowMenu(void)
 {
     cout << "\n1. Display the contents of array\n";
@@ -185,18 +141,18 @@ void ShowMenu(void)
     cin >> option;
     cout << endl;
 }
-
-void GetAverage(void)
+double GetAverage(void)
 {
     int sum = 0;
     for (int i = 0; i < dataCount; i++)
     {
         sum += numbers[i];
     }
-    cout << fixed << setprecision(2) << sum / (double)dataCount << endl;
+    double average = (double)sum / dataCount;
+    cout << fixed << setprecision(2) << "Average: " << average << endl;
+    return average;
 }
-
-void GetSmallest(void)
+int GetSmallest(void)
 {
     int smallest = numbers[0];
     for (int i = 1; i < dataCount; i++)
@@ -206,9 +162,8 @@ void GetSmallest(void)
             smallest = numbers[i];
         }
     }
-    cout << smallest << endl;
+    return smallest;
 }
-
 void GetNumOccurences(int num)
 {
     int found = 0;
@@ -221,7 +176,6 @@ void GetNumOccurences(int num)
     }
     cout << found << endl;
 }
-
 void Quit(void)
 {
     ofstream outfile("Numbers.dat");
@@ -231,4 +185,96 @@ void Quit(void)
     }
     outfile.close();
     exit(0);
+}
+
+// Functions by Maksym
+void scaleUp(void)
+{
+    int sFactor;
+    cout << "Enter the scale factor: ";
+    cin >> sFactor;
+    for (int i = 0; i < dataCount; i++)
+    {
+        numbers[i] *= sFactor;
+    }
+}
+void reverse(void)
+{
+    for (int i = 0; i < dataCount / 2; i++)
+    {
+        int temp = numbers[i];
+        numbers[i] = numbers[dataCount - 1 - i];
+        numbers[dataCount - 1 - i] = temp;
+    }
+}
+void zeroBase(void)
+{
+    int min = GetSmallest();
+    for (int i = 0; i < dataCount; i++)
+    {
+        numbers[i] -= min;
+    }
+}
+void removeNumber(void)
+{
+    int element;
+    cout << "Enter the number of the element you want to delete: ";
+    cin >> element;
+    if (element >= 1 && element <= dataCount)
+    {
+        for (int i = element - 1; i < dataCount - 1; i++)
+        {
+            numbers[i] = numbers[i + 1];
+        }
+        dataCount--;
+    }
+}
+
+// Functions by Luka
+void display(void)
+{
+    for (int i = 0; i < dataCount; i++)
+    {
+        cout << numbers[i] << " ";
+    }
+    cout << endl;
+}
+int getTotal(void)
+{
+    int total = 0;
+    for (int i = 0; i < dataCount; i++)
+    {
+        total += numbers[i];
+    }
+    cout << "Total: " << total << endl;
+    return total;
+
+}
+int getLargest(void)
+{
+    int largest = numbers[0];
+    for (int i = 1; i < dataCount; i++)
+    {
+        if (numbers[i] > largest)
+        {
+            largest = numbers[i];
+        }
+    }
+    cout << "Largest: " << largest << endl;
+    return largest;
+}
+void sortArr(void)
+{
+    for (int i = 0; i < dataCount - 1; i++)
+    {
+        for (int j = 0; j < dataCount - 1 - i; j++)
+        {
+            if (numbers[j] > numbers[j + 1])
+            {
+                int temp = numbers[j];
+                numbers[j] = numbers[j + 1];
+                numbers[j + 1] = temp;
+            }
+        }
+    }
 }
