@@ -18,10 +18,6 @@ void reverse(void);
 void zeroBase(void);
 void removeNumber(void);
 
-void display(void);
-int getTotal(void);
-int getLargest(void);
-void sortArr(void);
 
 int main()
 {
@@ -46,11 +42,11 @@ int main()
         switch (option)
         {
         case 1:
-            display();
+ 
             break;
         case 2:
         {
-            getTotal();
+
             break;
         }
         case 3:
@@ -58,7 +54,7 @@ int main()
             break;
         case 4:
         {
-            getLargest();
+            
             break;
             
         }
@@ -108,7 +104,7 @@ int main()
         }
         case 11:
         {
-            sortArr();
+            
             break;
         }
         case 12:
@@ -230,51 +226,5 @@ void removeNumber(void)
     }
 }
 
-// Functions by Luka
-void display(void)
-{
-    for (int i = 0; i < dataCount; i++)
-    {
-        cout << numbers[i] << " ";
-    }
-    cout << endl;
-}
-int getTotal(void)
-{
-    int total = 0;
-    for (int i = 0; i < dataCount; i++)
-    {
-        total += numbers[i];
-    }
-    cout << "Total: " << total << endl;
-    return total;
+// Functions by Luka(1.Display; 2.GetTotal; 4.GetLargest; 11.Short)
 
-}
-int getLargest(void)
-{
-    int largest = numbers[0];
-    for (int i = 1; i < dataCount; i++)
-    {
-        if (numbers[i] > largest)
-        {
-            largest = numbers[i];
-        }
-    }
-    cout << "Largest: " << largest << endl;
-    return largest;
-}
-void sortArr(void)
-{
-    for (int i = 0; i < dataCount - 1; i++)
-    {
-        for (int j = 0; j < dataCount - 1 - i; j++)
-        {
-            if (numbers[j] > numbers[j + 1])
-            {
-                int temp = numbers[j];
-                numbers[j] = numbers[j + 1];
-                numbers[j + 1] = temp;
-            }
-        }
-    }
-}
