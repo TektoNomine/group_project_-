@@ -17,6 +17,10 @@ void scaleUp(void);
 void reverse(void);
 void zeroBase(void);
 void removeNumber(void);
+void Display(int[], int);
+int GetTotal(int[], int);
+int GetLargest(int[], int);
+void Sort(int[], int);
 
 
 int main()
@@ -228,47 +232,44 @@ void removeNumber(void)
 
 // Functions by Luka(1.Display; 2.GetTotal; 4.GetLargest; 11.Short)
 
-void CItem::Display() {
-    cout << "Code: " << m_Code
-              << ", Description: " << m_Description
-              << ", Price: €" << m_Price
-              << ", Discount Rate: " << m_DiscountRate * 100 << "%" << endl;
+void Display(int numbers[], int count) {
+    cout << "Array contents:\n";
+    for (int i = 0; i < count; ++i) {
+        cout << numbers[i] << " ";
+    }
+    cout << endl;
 }
 
-void DoTotalInvoice(void) {
-    double total = 0.0;
-    for (int i = 0; i < itemCount; ++i) {
-        double discount = itemList[i].GetDiscountRate();
-        double price = itemList[i].GetPrice();
-        total += price - (price * discount);
+int GetTotal(int numbers[], int count) {
+    int total = 0;
+    for (int i = 0; i < count; ++i) {
+        total += numbers[i];
     }
-    cout << "Total Invoice Value: €" << total << endl;
+    return total;
 }
+cout << "Total: " << GetTotal(numbers, count) << endl;
 
-void GetLargest(void) {
-    if (itemCount == 0) {
-        cout << "No items available.\n";
-        return;
-    }
-
-    int largestIndex = 0;
-    for (int i = 1; i < itemCount; ++i) {
-        if (itemList[i].GetPrice() > itemList[largestIndex].GetPrice()) {
-            largestIndex = i;
+int GetLargest(int numbers[], int count) {
+    if (count == 0) return -1; 
+    int largest = numbers[0];
+    for (int i = 1; i < count; ++i) {
+        if (numbers[i] > largest) {
+            largest = numbers[i];
         }
     }
-
-    cout << "Item with the highest price:\n";
-    itemList[largestIndex].Display();
+    return largest;
 }
 
-void SortItemsByPrice(void) {
-    for (int i = 0; i < itemCount - 1; ++i) {
-        for (int j = 0; j < itemCount - i - 1; ++j) {
-            if (itemList[j].GetPrice() < itemList[j + 1].GetPrice()) {
-                swap(itemList[j], itemList[j + 1]);
+void Sort(int numbers[], int count) {
+    for (int i = 0; i < count - 1; ++i) {
+        for (int j = 0; j < count - i - 1; ++j) {
+            if (numbers[j] > numbers[j + 1]) {
+                // Swap elements
+                int temp = numbers[j];
+                numbers[j] = numbers[j + 1];
+                numbers[j + 1] = temp;
             }
         }
     }
-    cout << "Items have been sorted by price (highest to lowest).\n";
+    std::cout << "Array sorted in ascending order.\n";
 }
