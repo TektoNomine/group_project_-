@@ -229,10 +229,10 @@ void removeNumber(void)
 // Functions by Luka(1.Display; 2.GetTotal; 4.GetLargest; 11.Short)
 
 void CItem::Display() {
-    std::cout << "Code: " << m_Code
+    cout << "Code: " << m_Code
               << ", Description: " << m_Description
               << ", Price: €" << m_Price
-              << ", Discount Rate: " << m_DiscountRate * 100 << "%" << std::endl;
+              << ", Discount Rate: " << m_DiscountRate * 100 << "%" << endl;
 }
 
 void DoTotalInvoice(void) {
@@ -242,12 +242,12 @@ void DoTotalInvoice(void) {
         double price = itemList[i].GetPrice();
         total += price - (price * discount);
     }
-    std::cout << "Total Invoice Value: €" << total << std::endl;
+    cout << "Total Invoice Value: €" << total << endl;
 }
 
 void GetLargest(void) {
     if (itemCount == 0) {
-        std::cout << "No items available.\n";
+        cout << "No items available.\n";
         return;
     }
 
@@ -258,7 +258,7 @@ void GetLargest(void) {
         }
     }
 
-    std::cout << "Item with the highest price:\n";
+    cout << "Item with the highest price:\n";
     itemList[largestIndex].Display();
 }
 
@@ -266,9 +266,9 @@ void SortItemsByPrice(void) {
     for (int i = 0; i < itemCount - 1; ++i) {
         for (int j = 0; j < itemCount - i - 1; ++j) {
             if (itemList[j].GetPrice() < itemList[j + 1].GetPrice()) {
-                std::swap(itemList[j], itemList[j + 1]);
+                swap(itemList[j], itemList[j + 1]);
             }
         }
     }
-    std::cout << "Items have been sorted by price (highest to lowest).\n";
+    cout << "Items have been sorted by price (highest to lowest).\n";
 }
