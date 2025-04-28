@@ -273,4 +273,11 @@ void SortItemsByPrice(void) {
     std::cout << "Items have been sorted by price (highest to lowest).\n";
 }
 
+CItem itemList[25];
+int itemCount = 0;
+
+if (itemCount >= 25) {
+    std::cout << "Item list is full. Cannot add more items.\n";
+    return;
+}
 
