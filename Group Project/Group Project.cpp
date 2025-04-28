@@ -46,11 +46,11 @@ int main()
         switch (option)
         {
         case 1:
- 
+			Display(numbers, dataCount);
             break;
         case 2:
         {
-
+            cout << "Total: " << GetTotal(numbers, dataCount) << endl;
             break;
         }
         case 3:
@@ -58,7 +58,8 @@ int main()
             break;
         case 4:
         {
-            
+            int largest = GetLargest(numbers, dataCount);
+            cout << "Largest value: " << largest << endl;
             break;
             
         }
@@ -108,7 +109,7 @@ int main()
         }
         case 11:
         {
-            
+            Sort(numbers, dataCount);
             break;
         }
         case 12:
@@ -247,7 +248,6 @@ int GetTotal(int numbers[], int count) {
     }
     return total;
 }
-cout << "Total: " << GetTotal(numbers, count) << endl;
 
 int GetLargest(int numbers[], int count) {
     if (count == 0) return -1; 
